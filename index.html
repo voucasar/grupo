@@ -1,9 +1,125 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="refresh" content="0; url=https://chat.whatsapp.com/FiiQhDgYHdL9fuk21AKkKj">
-</head>
-<body>
-Redirecionando para o grupo...
-</body>
-</html>
+import { motion } from 'framer-motion';
+import { MessageCircle } from 'lucide-react';
+
+const WHATSAPP_NOIVA = "https://chat.whatsapp.com/SEU_LINK_NOIVA";
+const WHATSAPP_NOIVO = "https://chat.whatsapp.com/SEU_LINK_NOIVO";
+const IMAGE_URL = "https://media.base44.com/images/public/user_69c1d6699c1c9d983858f7d6/8c09c82de_camila.png";
+
+export default function Home() {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center px-6 py-16" style={{ backgroundColor: '#FAF9F6' }}>
+      
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+        className="text-center mb-12"
+      >
+        <p className="uppercase tracking-[0.35em] text-xs mb-3" style={{ color: '#D4AF37', fontFamily: "'Montserrat', sans-serif" }}>
+          Celebração
+        </p>
+        <h1 className="text-4xl md:text-5xl" style={{ fontFamily: "'Playfair Display', serif", color: '#1A1A1B', lineHeight: 1.2 }}>
+          Camila & Igor
+        </h1>
+        <div className="mt-4 flex items-center justify-center gap-3">
+          <div className="h-px w-16" style={{ backgroundColor: '#E5E4E2' }} />
+          <p className="text-sm tracking-[0.2em] uppercase" style={{ fontFamily: "'Montserrat', sans-serif", color: '#1A1A1B', opacity: 0.5 }}>
+            2026
+          </p>
+          <div className="h-px w-16" style={{ backgroundColor: '#E5E4E2' }} />
+        </div>
+      </motion.div>
+
+      {/* Central Image */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
+        className="relative mb-12"
+      >
+        <div
+          className="overflow-hidden shadow-2xl"
+          style={{
+            borderRadius: '50% 50% 48% 52% / 55% 55% 45% 45%',
+            width: 'clamp(260px, 55vw, 380px)',
+            aspectRatio: '3/4',
+            boxShadow: '0 30px 80px rgba(26,26,27,0.12), 0 8px 24px rgba(26,26,27,0.06)',
+          }}
+        >
+          <img
+            src={IMAGE_URL}
+            alt="Camila"
+            className="w-full h-full object-cover object-top"
+            style={{ transform: 'scale(1.05)' }}
+          />
+        </div>
+        {/* Decorative ring */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            borderRadius: '50% 50% 48% 52% / 55% 55% 45% 45%',
+            border: '1px solid rgba(212, 175, 55, 0.3)',
+            transform: 'scale(1.06)',
+          }}
+        />
+      </motion.div>
+
+      {/* WhatsApp Buttons */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, ease: 'easeOut', delay: 0.6 }}
+        className="flex flex-col gap-4 w-full max-w-xs"
+      >
+        <WhatsAppButton href={WHATSAPP_NOIVA} label="Grupo da Noiva" accent="#D4AF37" />
+        <WhatsAppButton href={WHATSAPP_NOIVO} label="Grupo do Noivo" accent="#1A1A1B" />
+      </motion.div>
+
+      {/* Footer */}
+      <motion.footer
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.2 }}
+        className="mt-16 text-center"
+      >
+        <p
+          className="text-xs tracking-[0.3em] uppercase"
+          style={{ fontFamily: "'Montserrat', sans-serif", color: '#1A1A1B', opacity: 0.3 }}
+        >
+          Bem-vindo à nossa celebração
+        </p>
+      </motion.footer>
+    </div>
+  );
+}
+
+function WhatsAppButton({ href, label, accent }) {
+  return (
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      whileHover={{ scale: 1.02, backgroundColor: '#E5E4E2' }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ duration: 0.2 }}
+      className="flex items-center justify-center gap-3 px-8 py-4 rounded-full border"
+      style={{
+        borderColor: '#1A1A1B',
+        borderWidth: '1px',
+        backgroundColor: 'transparent',
+        fontFamily: "'Montserrat', sans-serif",
+        fontSize: '0.95rem',
+        letterSpacing: '0.08em',
+        color: '#1A1A1B',
+        fontWeight: 500,
+        backdropFilter: 'blur(8px)',
+        WebkitBackdropFilter: 'blur(8px)',
+        textDecoration: 'none',
+      }}
+    >
+      <MessageCircle size={18} style={{ color: '#25D366' }} />
+      {label}
+    </motion.a>
+  );
+}
